@@ -1,4 +1,4 @@
-# doc-platform
+# Walkover Docs
 
 view the project deployment by following the given steps :
 1. Clone the repo
