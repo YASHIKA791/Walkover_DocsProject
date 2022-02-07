@@ -44,7 +44,7 @@
             <button type="button" id="signup">
               SIGN UP
             </button>
-            
+            <a href="/login">Go to Login</a>
           </div>
         </div>
       </div>
@@ -100,10 +100,10 @@
         set(ref(database,'users/'+ user.uid),{
           username: username,
           email: email
-        })
+        });
       
         alert('user created!');
-        window.location.href = '/login';
+        
         // ...
         })
         .catch((error) => {
