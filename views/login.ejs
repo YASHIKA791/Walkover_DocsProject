@@ -32,7 +32,7 @@
     <div class="login-form">
       
       <button type="button" onclick="window.location.href='/sign-up'">SIGN UP</button>
-      
+      <a id="forgotPass" href="">Forget Password?</a>
       
     </div>
     
@@ -130,7 +130,19 @@ onAuthStateChanged(auth, (user) => {
 //         alert(errorMessage);
 //    });
 // });
-
+forgotPass.addEventListener('click',(e)=>{
+	e.preventDefault();
+    const email = document.getElementById("email").value
+	sendPasswordResetEmail(auth,email)
+    .then(() => {
+        alert("Reset link sent to your email id")
+    })
+    .catch((error) => {
+		const errorCode = error.code;
+    const errorMessage = error.message;
+        document.getElementById("error").innerHTML = error.message
+    });
+});
   </script>
 </body>
 </html>
