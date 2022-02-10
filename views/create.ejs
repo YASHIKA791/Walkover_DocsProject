@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,14 +12,14 @@
 <body>
     <div class="container">
         <div class="top-items">
-            <a  href="/login">
+            <a href="/login">
                 <button class="login">Log In</button>
             </a>
             <a class="item2" href="/sign-up">
                 <button class="signup">Sign Up</button>
             </a>
         </div>
-        
+
         <div class="heading1">
             <img src="images/notes.jpg" width="100px" height="100px" alt="">
             <h2>Welcome to Walkover Docs Platform</h2>
@@ -31,13 +32,18 @@
                     <input type="text" name="new_workspace" placeholder="Enter workspace name" autocomplete="off">
                 </div>
                 <div>
-                    <button type="submit" class="btn-create">LAUNCH</button>
+                    <button type="button" class="btn-create" onclick="showmsg()">LAUNCH</button>
                 </div>
             </form>
         </div>
 
-        
+
     </div>
+    <script>
+        function showmsg() {
+            window.alert("Please first login!!");
+        }
+    </script>
 </body>
 
 </html>

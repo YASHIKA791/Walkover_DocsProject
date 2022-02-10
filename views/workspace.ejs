@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/workspace.css">
+    <title>workspace</title>
+</head>
+<body>
+    
+    <div class="container">
+
+        <div class="menu">
+            <label for="" class="search-heading">Search</label>
+            <input class="text" type="text" name="search_bar" placeholder="Search..">
+            <% for(let i=0; i<files.length; i++) { %>
+                <li>
+                    <%= files[i].name %>
+                    <a href="/workspace/<%= files[i].name %>">
+                        <button class="open-btn" id="show">Show</button>
+                    </a>
+                </li>
+            <% } %>
+        </div>
+
+        <form action="/workspace" method="post" class="form">
+            <button type="button" class="save-btn" onclick="contact()">Send for Review</button>
+            <input type="text" name="filename" id="file-name" class="filename" placeholder="Enter name of the file" required>
+            <input type="file" class="filename" name="inputfile" id="inputfile">
+            <textarea class="textarea" name="content" id="textarea" cols="80" rows="50"></textarea>
+            
+        </form>
+    </div>
+<script>
+    function contact()
+    {   var values=document.getElementById("textarea").value;
+    var heading=document.getElementById("file-name").value;
+    window.open("mailto:admin@workspace.com?subject=File For Review"+"&body="+"File Name-"+heading+"%0d%0a"+values);
+    }
+    document.getElementById('inputfile')
+        .addEventListener('change', function() {
+            const filepath = document.getElementById('inputfile').value;
+            let filename = "";
+            for(let i=filepath.length-1; i>=0; i--) {
+                if(filepath[i] >= 'A' && filepath[i] <= 'Z') 
+                    filename = filepath[i] + filename;
+                else if(filepath[i] >= 'a' && filepath[i] <= 'z' )
+                    filename = filepath[i] + filename;
+                else if(filepath[i]==='.')
+                    filename = filepath[i] + filename;
+                else break;
+            }
+            
+            var fr=new FileReader();
+            fr.onload=function(){
+                let filecontent =fr.result;
+
+                async function saveFileAndContent() {
+                    var details = {
+                        'filename': filename,
+                        'filecontent': filecontent,
+                    };
+
+                    var formBody = [];
+                    for (var property in details) {
+                        var encodedKey = encodeURIComponent(property);
+                        var encodedValue = encodeURIComponent(details[property]);
+                        formBody.push(encodedKey + "=" + encodedValue);
+                    }
+                    formBody = formBody.join("&");
+
+                    const option = {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": 'application/x-www-form-urlencoded;charset=UTF-8',
+                        },
+                        body: formBody
+                    }
+
+                    let result = await fetch("/api/saveFileAndContent", option).then((res) => res.json());
+                    // console.log(result);
+                }
+                saveFileAndContent();
+                window.location.href = "/workspace";
+            }
+            
+            fr.readAsText(this.files[0]);
+    })
+</script>
+    
+
+</body>
+</html>

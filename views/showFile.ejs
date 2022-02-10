@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- //<link rel="stylesheet" href="css/workspace.css"> -->
+    <title>workspace</title>
+</head>
+
+<body>
+    <style>
+        body {
+            padding: 0%;
+            margin: 0%;
+        }
+
+        .container {
+            display: flex;
+        }
+
+        .menu {
+            width: 500px;
+            /* border-right: 5px solid black; */
+        }
+
+        .text {
+            margin: 20px;
+            padding: 10px;
+            width: 80%;
+            height: 30px;
+            border-bottom-color: black;
+            border: none;
+            background-color: burlywood;
+            font-size: 20px;
+            font-family: sans-serif;
+
+        }
+
+        .filename {
+            margin: 10px;
+            padding: 5px;
+            width: 250px;
+            height: 30px;
+            border-bottom-color: black;
+            border: none;
+            background-color: rgb(255, 236, 212);
+            font-size: 15px;
+            font-family: sans-serif;
+            color: black;
+            border: 2px solid black;
+        }
+
+        .search-heading {
+            font-family: fantasy;
+            font-size: 30px;
+            margin: 5px;
+            margin-left: 10px;
+            color: darkblue;
+            font-weight: bold;
+        }
+
+        .form {
+            flex: 1;
+            /* Grow to rest of container */
+            background: rgb(227, 255, 227);
+            /* Just so it's visible */
+        }
+
+        textarea {
+            width: 95%;
+            /* height: 100%; */
+            padding: 12px 20px;
+            box-sizing: border-box;
+            border: 2px solid #ccc;
+            border-radius: 4px;
+            background-color: #f8f8f8;
+            font-size: 16px;
+            resize: none;
+            margin: 20px;
+        }
+
+        .save-btn {
+            background-color: firebrick;
+            color: floralwhite;
+            font-family: sans-serif;
+            font-size: 20px;
+            margin: 10px;
+            padding: 5px;
+            position: absolute;
+            right: 10px;
+            width: 200px;
+            height: 50px;
+            border-radius: 20px;
+        }
+
+
+
+
+        li {
+            list-style-type: none;
+            margin: 10px;
+            /* background-color: coral; */
+            font-size: 20px;
+            padding-left: 10px;
+            color: coral;
+            /* flex: 1; */
+        }
+
+        .open-btn {
+            background-color: rgb(36, 34, 178);
+            color: floralwhite;
+            font-family: sans-serif;
+            font-size: 15px;
+            margin: 10px;
+            width: 60px;
+            height: 30px;
+            color: rgb(255, 255, 255);
+            position: relative;
+            left: 100px;
+            /* flex: 1; */
+        }
+    </style>
+    <div class="container">
+
+        <div class="menu">
+            <label class="search-heading">Search</label>
+            <input class="text" type="text" name="search_bar" placeholder="Search..">
+            <% for(let i=0; i<files.length; i++) { %>
+                <li>
+                    <%= files[i].name %>
+                        <a href="/workspace/<%= files[i].name %>">
+                            <button class="open-btn" id="show">Show</button>
+                        </a>
+                </li>
+                <% } %>
+        </div>
+
+        <form action="/workspace" method="post" class="form">
+            <button type="button" class="save-btn" onclick="contact()">Send for Review</button>
+            <input type="text" name="filename" id="file-name" class="filename" placeholder="Enter name of the file"
+                required>
+            <input type="file" class="filename" name="inputfile" id="inputfile">
+            <textarea class="textarea" name="content" id="textarea" cols="80" rows="50"><%= content %></textarea>
+
+        </form>
+    </div>
+</body>
+<script>
+    function contact() {
+        var values = document.getElementById("textarea").value;
+        var heading = document.getElementById("file-name").value;
+        window.open("mailto:admin@workspace.com?subject=File For Review" + "&body=" + "File Name-" + heading + "%0d%0a" + values);
+    }
+    document.getElementById('inputfile')
+        .addEventListener('change', function () {
+
+
+            const filepath = document.getElementById('inputfile').value;
+            let filename = "";
+            for (let i = filepath.length - 1; i >= 0; i--) {
+                if (filepath[i] >= 'A' && filepath[i] <= 'Z')
+                    filename = filepath[i] + filename;
+                else if (filepath[i] >= 'a' && filepath[i] <= 'z')
+                    filename = filepath[i] + filename;
+                else if (filepath[i] === '.')
+                    filename = filepath[i] + filename;
+                else break;
+            }
+
+            var fr = new FileReader();
+            fr.onload = function () {
+                let filecontent = fr.result;
+
+                async function saveFileAndContent() {
+                    var details = {
+                        'filename': filename,
+                        'filecontent': filecontent,
+                    };
+
+                    var formBody = [];
+                    for (var property in details) {
+                        var encodedKey = encodeURIComponent(property);
+                        var encodedValue = encodeURIComponent(details[property]);
+                        formBody.push(encodedKey + "=" + encodedValue);
+                    }
+                    formBody = formBody.join("&");
+
+                    const option = {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": 'application/x-www-form-urlencoded;charset=UTF-8',
+                        },
+                        body: formBody
+                    }
+
+                    let result = await fetch("/api/saveFileAndContent", option).then((res) => res.json());
+                    // console.log(result);
+                }
+                saveFileAndContent();
+                window.location.href = "/workspace";
+            }
+
+            fr.readAsText(this.files[0]);
+        })
+
+
+
+</script>
+
+</html>

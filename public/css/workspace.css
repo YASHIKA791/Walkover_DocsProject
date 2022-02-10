@@ -1,0 +1,109 @@
+body {
+    padding: 0%;
+    margin: 0%;
+}
+
+.container {
+    display: flex;
+}
+
+.menu {
+    width: 500px;
+    /* border-right: 5px solid black; */
+}
+
+.text {
+    margin: 20px;
+    padding: 10px;
+    width: 80%;
+    height: 30px;
+    border-bottom-color: black;
+    border: none;
+    background-color: burlywood;
+    font-size: 20px;
+    font-family: sans-serif;
+    
+}
+
+.filename {
+    margin: 10px;
+    padding: 5px;
+    width: 250px;
+    height: 30px;
+    border-bottom-color: black;
+    border: none;
+    background-color: rgb(255, 236, 212);
+    font-size: 15px;
+    font-family: sans-serif;
+    color: black;
+    border:2px solid black;
+}
+
+.search-heading {
+    font-family: fantasy;
+    font-size: 30px;
+    margin: 5px;
+    margin-left: 10px;
+    color: darkblue;
+    font-weight: bold;
+}
+
+.form {
+    flex: 1;
+  /* Grow to rest of container */
+  background: rgb(227, 255, 227);
+  /* Just so it's visible */
+}
+
+textarea {
+    width: 95%;
+    /* height: 100%; */
+    padding: 12px 20px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+    font-size: 16px;
+    resize: none;
+    margin: 20px;
+}
+
+.save-btn {
+    background-color: firebrick;
+    color: floralwhite;
+    font-family: sans-serif;
+    font-size: 20px;
+    margin: 10px;
+    padding: 5px;
+    position: absolute;
+    right: 10px;
+    width: 200px;
+    height: 50px;
+    border-radius: 20px;
+}
+
+
+
+
+li {
+    list-style-type: none; 
+    margin: 10px;
+    /* background-color: coral; */
+    font-size: 20px;
+    padding-left: 10px;
+    color: coral;
+    /* flex: 1; */
+}
+.open-btn {
+    background-color: rgb(36, 34, 178);
+    color: floralwhite;
+    font-family: sans-serif;
+    font-size: 15px;
+    margin: 10px;
+    width: 60px;
+    height: 30px;
+    color: rgb(255, 255, 255);
+    position: relative;
+    left: 100px;
+    /* flex: 1; */
+}

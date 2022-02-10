@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/create.css">
+    <title>Create workspace</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="top-items">
+            <img src="images/usericon.png" width="80px" height="80px" alt="usericon">
+            <p>
+                <%= username %>
+            </p>
+        </div>
+
+        <div class="heading1">
+            <img src="images/notes.jpg" width="100px" height="100px" alt="">
+            <h2>Welcome to Walkover Docs Platform</h2>
+        </div>
+        <div class="">
+            <h1>Create a new workspace</h1>
+            <h4>Make sure to enter unique name for your workspace</h4>
+            <form action="/dashboard" method="post">
+                <div>
+                    <input type="text" name="new_workspace" placeholder="Enter workspace name" autocomplete="off">
+                </div>
+                <div>
+                    <button type="submit" class="btn-create">LAUNCH</button>
+                </div>
+            </form>
+        </div>
+        <% if(workspaces_list.length===0) { %>
+            <h3></h3>
+            <% } else { %>
+                <h3>You have following workspaces</h3>
+                <% for(var i=0; i<workspaces_list.length; i++) { %>
+                    <div class="workspace-list">
+                        <div>
+                            <p class="workspace-name">
+                                <%= workspaces_list[i] %>
+                            </p>
+                        </div>
+                        <div>
+                            <a href="/workspace"><button class="workspace-btn">Open</button></a>
+                        </div>
+                    </div>
+                    <% } %>
+                        <% } %>
+
+    </div>
+</body>
+
+</html>
