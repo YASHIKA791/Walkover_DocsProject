@@ -18,29 +18,29 @@
 <body class="body">
 
   <div class="login-page">
-    <div class="form">
+    <form class="form" action="/login" method="POST">
 
       <div>
         <lottie-player
           src="https://assets4.lottiefiles.com/datafiles/XRVoUu3IX4sGWtiC3MPpFnJvZNq7lVWDCa8LSqgS/profile.json"
           background="transparent" speed="1" style="justify-content: center;" loop autoplay></lottie-player>
-        <input type="email" id="email" placeholder="&#xf007;  email address" / required>
-        <input type="password" id="password" placeholder="&#xf023;  password" / required>
+        <input type="email" id="email" name="useremail" placeholder="&#xf007;  email address" / required>
+        <input type="password" id="password" name="userpassword" placeholder="&#xf023;  password" / required>
         <i class="fas fa-eye" onclick="show()"></i>
         <br>
         <br>
-        <button type="button" id="login">LOGIN</button>
+        <button type="submit" id="login">LOGIN</button>
 
       </div>
 
       <div class="login-form">
 
         <button type="button" onclick="window.location.href='/sign-up'">SIGN UP</button>
-        <a id="forgotPass" href="">Forget Password?</a>
+        <a id="forgotPass" href="/forgot">Forget Password?</a>
 
       </div>
 
-    </div>
+    </form>
   </div>
 
   <script>
@@ -57,9 +57,8 @@
       }
     };
   </script>
-  <script type="module" src="js/loginAuth.js">
 
-  </script>
+
 </body>
 
 </html>

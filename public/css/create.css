@@ -62,7 +62,7 @@ input[type=text] {
     /* border: solid 5px black; */
     margin: auto;
     height: 60px;
-    width: 30%;
+    width: 40%;
     display: flex;
     align-items: center;
 }

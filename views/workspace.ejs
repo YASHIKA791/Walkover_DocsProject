@@ -1,94 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/workspace.css">
+    <link rel="stylesheet" href="/css/workspace.css">
     <title>workspace</title>
 </head>
+
 <body>
-    
     <div class="container">
 
         <div class="menu">
-            <label for="" class="search-heading">Search</label>
-            <input class="text" type="text" name="search_bar" placeholder="Search..">
-            <% for(let i=0; i<files.length; i++) { %>
-                <li>
-                    <%= files[i].name %>
-                    <a href="/workspace/<%= files[i].name %>">
-                        <button class="open-btn" id="show">Show</button>
-                    </a>
-                </li>
-            <% } %>
+            <!-- <form action="/findfile"> -->
+            <label for="" class="search-bar">
+                <%= w_name %>
+            </label>
+            <!-- <input class="text" type="text" name="search_bar" placeholder="Search..">
+                <input type="hidden" name="w_id" value="<%= w_id %>"></input>
+                <input type="hidden" name="u_id" value="<%= u_id %>"></input> -->
+            <!-- <button class="searchBtn">Search</button> -->
+            <!-- </form> -->
+
+            <div class="">
+                <% files.forEach(function (file) { %>
+                    <li>
+
+                        <!-- <div class="item1"> -->
+                        <%= file.filename %>
+                            <!-- </div> -->
+
+                            <!-- <div class="item2"> -->
+                            <a href="/user/<%= u_id %>/workspace/<%= w_id %>/file/<%= file._id %>">
+                                <button class="open-btn" id="show">Show</button>
+                            </a>
+                            <a href="/userd/<%= u_id %>/workspaced/<%= w_id %>/filed/<%= file._id %>">
+                                <button class="open-btn" id="show">Delete</button>
+                            </a>
+                            <!-- </div> -->
+
+
+                    </li>
+                    <% }); %>
+            </div>
+
+
         </div>
 
-        <form action="/workspace" method="post" class="form">
-            <button type="button" class="save-btn" onclick="contact()">Send for Review</button>
-            <input type="text" name="filename" id="file-name" class="filename" placeholder="Enter name of the file" required>
-            <input type="file" class="filename" name="inputfile" id="inputfile">
-            <textarea class="textarea" name="content" id="textarea" cols="80" rows="50"></textarea>
-            
+        <form class="form">
+            <!-- <button type="button" class="save-btn" onclick="contact()" style="float: right">Review</button> -->
+            <button type="button" class="save-btn" onclick="contact()" style="float: right">Log Out</button>
+            <a href="/user/<%= u_id %>/workspace/<%= w_id %>">
+                <button type="button" class="btn">Back to Workspace</button>
+            </a>
+            <a href="/user/<%= u_id %>">
+                <button type="button" class="btn">Back to Dashboard</button>
+            </a>
+            <!-- <a href="/"></a> -->
+            <!-- <button type="button" class="save-btn" style="float: right;">Dashboard</button> -->
+            <div>
+                <!-- <label for="input-file"></label><br> -->
+                <!-- for adding file name in filename text -->
+                <input type="file" class="choose-btn" id="input-file">
+
+                <input type="hidden" id="workspaceid" value="<%= w_id %>"></input>
+
+                <input type="hidden" id="user" value="<%= u_id %>"></input>
+            </div>
+
+            <label class="search-bar">File Name : </label>
+            <input type="text" class="filename" value="<%= file_name %>" readonly>
+
+            <textarea class="textarea" name="content" id="content-target" cols="80" rows="50"
+                readonly><%=content%></textarea>
+
         </form>
     </div>
-<script>
-    function contact()
-    {   var values=document.getElementById("textarea").value;
-    var heading=document.getElementById("file-name").value;
-    window.open("mailto:admin@workspace.com?subject=File For Review"+"&body="+"File Name-"+heading+"%0d%0a"+values);
-    }
-    document.getElementById('inputfile')
-        .addEventListener('change', function() {
-            const filepath = document.getElementById('inputfile').value;
-            let filename = "";
-            for(let i=filepath.length-1; i>=0; i--) {
-                if(filepath[i] >= 'A' && filepath[i] <= 'Z') 
-                    filename = filepath[i] + filename;
-                else if(filepath[i] >= 'a' && filepath[i] <= 'z' )
-                    filename = filepath[i] + filename;
-                else if(filepath[i]==='.')
-                    filename = filepath[i] + filename;
-                else break;
-            }
-            
-            var fr=new FileReader();
-            fr.onload=function(){
-                let filecontent =fr.result;
-
-                async function saveFileAndContent() {
-                    var details = {
-                        'filename': filename,
-                        'filecontent': filecontent,
-                    };
-
-                    var formBody = [];
-                    for (var property in details) {
-                        var encodedKey = encodeURIComponent(property);
-                        var encodedValue = encodeURIComponent(details[property]);
-                        formBody.push(encodedKey + "=" + encodedValue);
-                    }
-                    formBody = formBody.join("&");
-
-                    const option = {
-                        method: "POST",
-                        headers: {
-                            "Content-Type": 'application/x-www-form-urlencoded;charset=UTF-8',
-                        },
-                        body: formBody
-                    }
-
-                    let result = await fetch("/api/saveFileAndContent", option).then((res) => res.json());
-                    // console.log(result);
-                }
-                saveFileAndContent();
-                window.location.href = "/workspace";
-            }
-            
-            fr.readAsText(this.files[0]);
-    })
-</script>
-    
-
 </body>
+<script src="/js/choosingfile.js"></script>
+
 </html>

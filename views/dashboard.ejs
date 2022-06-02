@@ -5,21 +5,21 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/create.css">
+    <link rel="stylesheet" href="/css/create.css">
     <title>Create workspace</title>
 </head>
 
 <body>
     <div class="container">
         <div class="top-items">
-            <img src="images/usericon.png" width="80px" height="80px" alt="usericon">
+            <img src="/images/usericon.png" width="80px" height="80px" alt="usericon">
             <p>
-                <%= username %>
+                <%= user.name %>
             </p>
         </div>
 
         <div class="heading1">
-            <img src="images/notes.jpg" width="100px" height="100px" alt="">
+            <img src="/images/notes.jpg" width="100px" height="100px" alt="">
             <h2>Welcome to Walkover Docs Platform</h2>
         </div>
         <div class="">
@@ -29,28 +29,34 @@
                 <div>
                     <input type="text" name="new_workspace" placeholder="Enter workspace name" autocomplete="off">
                 </div>
+                <input type="hidden" name="user_id" value="<%= user._id %>"></input>
                 <div>
                     <button type="submit" class="btn-create">LAUNCH</button>
                 </div>
             </form>
         </div>
-        <% if(workspaces_list.length===0) { %>
+        <% if(user.workspaces.length===0) { %>
             <h3></h3>
             <% } else { %>
                 <h3>You have following workspaces</h3>
-                <% for(var i=0; i<workspaces_list.length; i++) { %>
+                <% for(var i=0; i<user.workspaces.length; i++) { %>
                     <div class="workspace-list">
                         <div>
                             <p class="workspace-name">
-                                <%= workspaces_list[i] %>
+                                <%= user.workspaces[i].name %>
                             </p>
                         </div>
                         <div>
-                            <a href="/workspace"><button class="workspace-btn">Open</button></a>
+                            <a href="/user/<%= user._id %>/workspace/<%= user.workspaces[i]._id %>"><button
+                                    class="workspace-btn">Open</button></a>
+                            <a href="/userd/<%= user._id %>/workspaced/<%= user.workspaces[i]._id %>"><button
+                                    class="workspace-btn" style="background-color: red;">Remove</button></a>
                         </div>
                     </div>
                     <% } %>
                         <% } %>
+
+
 
     </div>
 </body>

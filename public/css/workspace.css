@@ -1,15 +1,18 @@
 body {
     padding: 0%;
     margin: 0%;
+    
 }
 
 .container {
     display: flex;
+    background-image: url('../images/login_signup.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .menu {
-    width: 500px;
-    /* border-right: 5px solid black; */
+    width: 400px;
 }
 
 .text {
@@ -19,39 +22,48 @@ body {
     height: 30px;
     border-bottom-color: black;
     border: none;
-    background-color: burlywood;
+    background-color: rgb(200, 203, 243);
     font-size: 20px;
-    font-family: sans-serif;
+    font-family: Helvetica;
     
 }
 
 .filename {
-    margin: 10px;
-    padding: 5px;
-    width: 250px;
+    margin: 20px;
+    padding: 10px;
+    width: 80%;
     height: 30px;
     border-bottom-color: black;
     border: none;
-    background-color: rgb(255, 236, 212);
-    font-size: 15px;
-    font-family: sans-serif;
+    background-color: rgb(235, 235, 238);
+    font-size: 20px;
+    font-family: Helvetica;
     color: black;
-    border:2px solid black;
 }
 
-.search-heading {
-    font-family: fantasy;
+.search-bar {
+    font-family: Helvetica;
     font-size: 30px;
-    margin: 5px;
-    margin-left: 10px;
-    color: darkblue;
+    margin: 20px;
+    color:rgb(169, 126, 58);
     font-weight: bold;
 }
+input[type=text] {
+    width: 150px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+  }
+  
+  input[type=text]:focus {
+    width: 50%;
+  }
 
 .form {
     flex: 1;
-  /* Grow to rest of container */
-  background: rgb(227, 255, 227);
+  /* background: rgb(175, 178, 228) */
+  background-image: url('../images/login_signup.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
   /* Just so it's visible */
 }
 
@@ -68,42 +80,116 @@ textarea {
     margin: 20px;
 }
 
+
 .save-btn {
-    background-color: firebrick;
-    color: floralwhite;
-    font-family: sans-serif;
-    font-size: 20px;
-    margin: 10px;
-    padding: 5px;
+    display: inline-block;
+
+    background-color: #3838d8;
+    font-family: Helvetica;
+    font-size: 15px;
+    margin: 5px;
+    padding: 10px;
     position: absolute;
     right: 10px;
-    width: 200px;
+    /* width: 80px; */
+    width: max-content;
     height: 50px;
-    border-radius: 20px;
+    margin-top: 21px;
+    border-radius: 15px;
+    display: inline-block;
+    border: 4px double #cccccc;
+    color: #eeeeee;
+    text-align: center;
+    transition: all 0.5s;
+    cursor: pointer;
 }
+button span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+  }
+  button span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    left: -20px;
+    transition: 0.5s;
+  }
+  button:hover {
+    background-color: #cab7d6;
+  }
+  button:hover span {
+    padding-left: 25px;
+  }
+  button:hover span:after {
+    opacity: 1;
+    right: 0;
+  }
+  .choose-btn {
+    display: inline-block;
 
-
-
+    background-color: #3838d8;
+    font-family: Helvetica;
+    font-size: 15px;
+    margin: 40px;
+    padding: 10px;
+    position: absolute;
+    right: 100px;
+    width: 200px;
+    height: 20px;
+    border-radius: 15px;
+    display: inline-block;
+    border: 4px double #cccccc;
+    color: #eeeeee;
+    text-align: center;
+    transition: all 0.5s;
+    cursor: pointer;
+}
 
 li {
     list-style-type: none; 
     margin: 10px;
     /* background-color: coral; */
-    font-size: 20px;
+    font-size: 18px;
     padding-left: 10px;
-    color: coral;
+    color:rgb(36, 34, 178);
+    background-color: rgb(227, 227, 227);
+    ;
     /* flex: 1; */
 }
 .open-btn {
-    background-color: rgb(36, 34, 178);
-    color: floralwhite;
-    font-family: sans-serif;
+    background-color: #3870d8;
+    font-family: Helvetica;
     font-size: 15px;
+    margin: 5px;
+    border-radius: 15px;
+    position: relative;
     margin: 10px;
     width: 60px;
     height: 30px;
-    color: rgb(255, 255, 255);
-    position: relative;
+    border: 4px double #cccccc;
+    color: #eeeeee;
+    text-align: center;
+    transition: all 0.5s;
     left: 100px;
-    /* flex: 1; */
+    flex: 1;
+}
+
+.btn {
+  background-color: #3c5bd8;
+  font-family: Helvetica;
+  font-size: 15px;
+  margin: 5px;
+  border-radius: 15px;
+  position: relative;
+  margin: 10px;
+  width: max-content;
+  height: 60px;
+  border: 4px double #cccccc;
+  color: #eeeeee;
+  text-align: center;
+  transition: all 0.5s;
+  left: 100px;
 }
