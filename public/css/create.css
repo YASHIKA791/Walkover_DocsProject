@@ -5,7 +5,18 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
 }
-
+.logout {
+    background-color: #0b36e5; /* Green */
+    border-radius: 15%;
+    border: 2px solid black;
+    
+    color: white;
+    padding: 15px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+  }
 .heading1 {
     margin: 20px;
 }
