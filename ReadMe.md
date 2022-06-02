@@ -5,7 +5,7 @@
 
  <h1 align="center"> Walkover-Docs Platform </h1>
 
-<p align="center"> A doc platform where organisation can keep all work related docs in single workplace.</p>
+<p align="center"> A doc platform where organisation can keep all work related docs in single place.</p>
 <p align="center">
 <a href="https://github.com/YASHIKA791/Walkover_DocsProject/graphs/contributors"><img alt="GitHub contributors" src="https://img.shields.io/github/contributors/YASHIKA791/Walkover_DocsProject"></a>
 <a href="https://github.com/YASHIKA791/Walkover_DocsProject/pulls"><img src="https://img.shields.io/github/issues-pr/YASHIKA791/Walkover_DocsProject" alt="Pull Requests Badge"/></a>
@@ -15,19 +15,19 @@
 
 - [Features](#features)
 - [Installation](#installation)
+
+- [Deployment](#deployment)
 - [Tech Stack](#tech-stack)
 - [Contributors](#contributors)
 
 ---
 ## Features
 
-- Login and SignUp pages authenticated using Firebase. Forget Password feature is present.
+- Login and SignUp pages authenticated using Bcyrpt hasing function. Forget Password feature is present.
 
-- A user dashboard to display all your workspaces.You can create a workspace of your own or join an existing one.
+- Every user has to first login before launching any workspace.
 
-- Users can edit documents either by typing directly in the text area or by choosing a file from their pc and modifying necessary changes. 
-
-- Admin review of all the documentations.
+- A user dashboard to display all your workspaces.You can create a workspace of your own and can upload , view and delete files in every workspace.
 
 
 ## Installation
@@ -48,16 +48,22 @@ once downloaded, go to the terminal, type the given below command
 4. Go to your browser
 5. Go to http://localhost:3000/
 
+## Deployment
+
+You can go in the environments section of this repository to view the deployment link.
+
 
 ## Tech Stack
 
 - Front-End : 
-HTML(Basic skeleton used in form of EJS), CSS
+EJS,Bootstrap,CSS
 - Back-End : 
-NODEJS,Firebase
+NODEJS,MongoDB
 - Other tools and platforms : <br>
 i) Used Heroku for CI/CD deployment <br>
-ii) Balsamiq cloud tool to design wireframe of pages
+ii) Balsamiq cloud tool to design wireframe of pages<br>
+iii)Used ATLAS for database deployment.
+
  
 
 ## Contributors:
